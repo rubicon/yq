@@ -49,6 +49,7 @@ var CreateMap = &OperationType{Type: "CREATE_MAP", NumArgs: 2, Precedence: 40, H
 var ShortPipe = &OperationType{Type: "SHORT_PIPE", NumArgs: 2, Precedence: 45, Handler: PipeOperator}
 
 var Length = &OperationType{Type: "LENGTH", NumArgs: 0, Precedence: 50, Handler: LengthOperator}
+var Keys = &OperationType{Type: "KEYS", NumArgs: 0, Precedence: 50, Handler: KeysOperator}
 var Collect = &OperationType{Type: "COLLECT", NumArgs: 0, Precedence: 50, Handler: CollectOperator}
 var GetStyle = &OperationType{Type: "GET_STYLE", NumArgs: 0, Precedence: 50, Handler: GetStyleOperator}
 var GetTag = &OperationType{Type: "GET_TAG", NumArgs: 0, Precedence: 50, Handler: GetTagOperator}
