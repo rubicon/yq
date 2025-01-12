@@ -1,15 +1,11 @@
-strings:
-  - a: banana
-  - a: cat
-  - a: apple
-
-numbers:
-  - a: 12
-  - a: 13
-  - a: 120
-
-
-obj:
-  - a: {cat: "adog"}
-  - a: {cat: "doga"}
-  - a: apple
+# block comments come through
+person: # neither do comments on maps
+    name: Mike Wazowski # comments on values appear
+    pets: 
+    - cat # comments on array values appear
+    - dog # comments on array values appear
+    - things:
+        - frog
+    food: [pizza] # comments on arrays do not
+emptyArray: []
+emptyMap: []
