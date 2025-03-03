@@ -10,14 +10,14 @@ func mapValuesOperator(d *dataTreeNavigator, context Context, expressionNode *Ex
 		candidate := el.Value.(*CandidateNode)
 		//run expression against entries
 		// splat toEntries and pipe it into Rhs
-		splatted, err := splat(d, context.SingleChildContext(candidate), traversePreferences{})
+		splatted, err := splat(context.SingleChildContext(candidate), traversePreferences{})
 		if err != nil {
 			return Context{}, err
 		}
 
 		assignUpdateExp := &ExpressionNode{
 			Operation: &Operation{OperationType: assignOpType, UpdateAssign: true},
-			Rhs:       expressionNode.Rhs,
+			RHS:       expressionNode.RHS,
 		}
 		_, err = assignUpdateOperator(d, splatted, assignUpdateExp)
 		if err != nil {
@@ -37,13 +37,13 @@ func mapOperator(d *dataTreeNavigator, context Context, expressionNode *Expressi
 		candidate := el.Value.(*CandidateNode)
 		//run expression against entries
 		// splat toEntries and pipe it into Rhs
-		splatted, err := splat(d, context.SingleChildContext(candidate), traversePreferences{})
+		splatted, err := splat(context.SingleChildContext(candidate), traversePreferences{})
 		if err != nil {
 			return Context{}, err
 		}
 
-		result, err := d.GetMatchingNodes(splatted, expressionNode.Rhs)
-		log.Debug("expressionNode.Rhs %v", expressionNode.Rhs.Operation.OperationType)
+		result, err := d.GetMatchingNodes(splatted, expressionNode.RHS)
+		log.Debug("expressionNode.Rhs %v", expressionNode.RHS.Operation.OperationType)
 		log.Debug("result %v", result)
 		if err != nil {
 			return Context{}, err
@@ -54,7 +54,7 @@ func mapOperator(d *dataTreeNavigator, context Context, expressionNode *Expressi
 		if err != nil {
 			return Context{}, err
 		}
-		collected.Node.Style = unwrapDoc(candidate.Node).Style
+		collected.Style = candidate.Style
 
 		results.PushBack(collected)
 
